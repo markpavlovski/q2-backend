@@ -23,9 +23,12 @@ function create(message,id){
 function distance(distance){
   console.log(distance);
   return (
-    db('messages')
-    // .where({location})
-    .returning('*')
+    // db('messages')
+    // // .where({location})
+    // .returning('*')
+    db.raw(`SELECT *
+        FROM messages
+        where ST_DWithin(messages.location, ST_MakePoint(${currentLocation})::geography, 1000)`)
   )
 }
 

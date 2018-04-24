@@ -29,5 +29,3 @@
     "dotenv": "^5.0.1"
   }
 }
-
-/*  psql q2project -c select * from messages */
