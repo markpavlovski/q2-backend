@@ -3,22 +3,18 @@ const st = require('knex-postgis')(db)
 console.log(st);
 const bcrypt = require('bcrypt-as-promised')
 const userModel = require('./users')
-const location = '47.614445, -122.322622'
+const location = '47.633199 -122.317607'
 const currentLocation = '47.598886, -122.333791' // galvanize
 // const currentLocation = '0, 0'
 
 
 
 function create(message,id){
-
-  return userModel.getOneById(id)
-  .then(function(user){
     return (
       db('messages')
-      .insert({ users_id: user.id, message, location })
+      .insert({ users_id: id, message, location: st.geography(st.geomFromText(`Point(${location})`, 4326)) })
       .returning('*')
     )
-  })
 }
 //
 // function distance(distance){
@@ -49,7 +45,7 @@ function create(message,id){
 
 
 
-function distance(distance,onlyFriends = false,onlyMine = false){
+function distance(distance, id, onlyFriends = true,onlyMine = false){
   if (onlyFriends) {
     let localMessages
     let myFriends
@@ -61,7 +57,7 @@ function distance(distance,onlyFriends = false,onlyMine = false){
     .then(messages => {
       localMessages = messages.rows
       // console.log(localMessages.filter(message => message.id == 1));
-      return db('users_users').where('users_id', 1)
+      return db('users_users').where('users_id', id)
     })
     .then(friends => {
       myFriends = friends
@@ -76,7 +72,7 @@ function distance(distance,onlyFriends = false,onlyMine = false){
           where ST_DWithin(messages.location, ST_MakePoint(${currentLocation})::geography, ${distance})`)
     )
     .then(messages => {
-      return messages.rows.filter(message => message.users_id == 1)
+      return messages.rows.filter(message => message.users_id == id)
     })
   } else {
     return (
