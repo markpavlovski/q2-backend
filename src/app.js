@@ -20,6 +20,8 @@ app.use(bodyParser.json())
 
 app.use('/auth', require('./routes/auth'))
 app.use('/users', require('./routes/users'))
+app.use('/messages', require('./routes/messages'))
+
 
 //////////////////////////////////////////////////////////////////////////////
 // example routes, not part of an organized application
