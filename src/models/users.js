@@ -13,6 +13,14 @@ function getOneByUserName(username){
   )
 }
 
+function getOneById(id){
+  return (
+    db('users')
+    .where({ id })
+    .first()
+  )
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // Create a user
 //
@@ -54,5 +62,6 @@ function create(username, password){
 
 module.exports = {
   getOneByUserName,
+  getOneById,
   create
 }
