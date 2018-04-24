@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt-as-promised')
 const userModel = require('./users')
 const location = '47.614445, -122.322622'
 const currentLocation = '47.614440, -122.322620'
+// const currentLocation = '0, 0'
 
 
 
