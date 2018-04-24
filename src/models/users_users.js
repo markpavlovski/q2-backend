@@ -1,16 +1,15 @@
 const db = require('../../db')
 const bcrypt = require('bcrypt-as-promised')
 const userModel = require('./users')
-const location = '47.614445, -122.322622'
 
 
-function create(message,id){
+function create(friends_id,id){
 
   return userModel.getOneById(id)
   .then(function(user){
     return (
-      db('messages')
-      .insert({ users_id: user.id, message, location })
+      db('users_users')
+      .insert({ users_id: user.id, friends_id })
       .returning('*')
     )
   })
