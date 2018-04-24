@@ -15,10 +15,24 @@ function create(req, res, next){
   .catch(next)
 }
 
+
+function distance(req, res, next){
+  console.log(req.params)
+  if(!parseFloat(req.params.distance)){
+    return next({ status: 400, message: 'Distance must be a number'})
+  }
+  messageModel.distance(parseFloat(req.params.distance))
+  .then(function(data){
+    return res.status(201).send({ data })
+  })
+  .catch(next)
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // Quality of Life functions
 //////////////////////////////////////////////////////////////////////////////
 
 module.exports = {
-  create
+  create,
+  distance
 }

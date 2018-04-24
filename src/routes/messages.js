@@ -8,6 +8,7 @@ const authController = require('../controllers/auth')
 //////////////////////////////////////////////////////////////////////////////
 
 router.post('/', authController.isAuthenticated, messageController.create)
+router.get('/:distance', authController.isAuthenticated, messageController.distance)
 
 
 
