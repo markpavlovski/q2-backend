@@ -49,7 +49,7 @@ function create(message,id){
 
 
 
-function distance(distance,onlyFriends=false,onlyMine=true){
+function distance(distance,onlyFriends = false,onlyMine = false){
   if (onlyFriends) {
     let localMessages
     let myFriends
