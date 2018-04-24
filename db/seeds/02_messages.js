@@ -6,10 +6,10 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex(TABLE_NAME).insert([
-        {id: 1, users_id: 1, location: 'password', message: 'hello'},
-        {id: 2, users_id: 1, location: 'password', message: 'world'},
-        {id: 3, users_id: 2, location: 'password', message: 'woof'},
-        {id: 4, users_id: 2, location: 'password', message: 'woof woof'}
+        {id: 1, users_id: 1, location: '47.614445, -122.322622', message: 'hello'},
+        {id: 2, users_id: 1, location: '47.614445, -122.322622', message: 'world'},
+        {id: 3, users_id: 2, location: '47.614445, -122.322622', message: 'woof'},
+        {id: 4, users_id: 2, location: '47.614445, -122.322622', message: 'woof woof'}
       ])
     })
     .then(() => {
