@@ -21,7 +21,7 @@ function create(message,id){
 }
 
 function distance(distance){
-  console.log('hi');
+  console.log(distance);
   return (
     db('messages')
     // .where({location})
